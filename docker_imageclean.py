@@ -37,7 +37,8 @@ def group_by_repo(imgs):
     repos = {}
     for img in imgs:
         for repotag in img.tags:
-            repo, *rest = repotag.split(':')
+            idx = repotag.rfind(':')
+            repo = repotag[:idx] if idx != -1 else repotag
 
             try:
                 repoimgs = repos[repo]
