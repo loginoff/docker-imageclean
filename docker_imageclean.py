@@ -96,7 +96,7 @@ if __name__=='__main__':
     for i,img in enumerate(delete):
         print('Deleting %d/%d: %s ... ' % (i+1, len(delete), pretty_print_image(img)), end='')
         try:
-            client.images.remove(img.id)
+            client.images.remove(img.id, force=True)
         except docker.errors.APIError as e:
             if e.explanation.find('image is being used by running container') != -1:
                 print('Uname to delete: being used by running container!')
